@@ -1,0 +1,50 @@
+/*
+* Andrew Giardina 
+* CMPT 333N HW3 - Basic Constructs
+* I included a visual aid in the repository for reference.
+*/
+
+// Facts:
+
+ sister(lucy,greg).        /* Fact  1 */
+ sister(lucy,joey).        /* Fact  2 */
+ sister(pamela,samson).    /* Fact  3 */
+brother(joey,lucy).        /* Fact  4 */
+brother(joey,greg).        /* Fact  5 */
+brother(greg,joey).        /* Fact  6 */
+brother(greg,lucy).	   /* Fact  7 */
+brother(samson,pamela).    /* Fact  8 */
+married(charlotte,greg).   /* Fact  9 */
+married(lucy,samson).      /* Fact 10 */
+married(pamela,bradley).   /* Fact 11 */
+
+
+// Rules:
+
+married(X,Y)         ←  married(Y,X)                               /* Rule 0  Reinforce Marriage logic  */
+brother_in_law(X,Y). ←  married(Y,Z), brother(X,Z).      	   /* Rule 1 */
+brother_in_law(X,S). ←  married(X,Y),  sister(Y,S).      	   /* Rule 2 */
+brother_in_law(X,R). ←  brother(X,Y), married(Y,Z),  sister(R,Z).  /* Rule 3 */
+brother_in_law(X,R). ←  brother(X,Y), married(Y,Z), brother(R,Z).  /* Rule 4 */
+ sister_in_law(X,Y). ←  married(Y,Z),  sister(X,Z).      	   /* Rule 5 */
+ sister_in_law(X,S). ←  married(X,Y), brother(Y,S).      	   /* Rule 6 */
+ sister_in_law(X,R). ←   sister(X,Y), married(Y,Z),  sister(R,Z).  /* Rule 7 */
+ sister_in_law(X,R). ←   sister(X,Y), married(Y,Z), brother(R,Z).  /* Rule 8 */
+
+
+// Queries:
+
+brother(greg,joey)?		/* Query 1 */
+	// yes
+
+sister(charlotte,pamela)?	/* Query 2 */
+	// no
+
+married(joey,Y)?		/* Query 3 */
+	// no
+
+sister_in_law(charlotte,lucy)?	/* Query 4 */
+	// yes
+
+brother_in_law(greg,bradley)?	/* Query 5 */
+	// no
