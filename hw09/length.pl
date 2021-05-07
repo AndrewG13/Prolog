@@ -9,7 +9,7 @@ itlength([],0).
 itlength(Xs,L) :-
     itL(Xs,Xs,0,L).
 
-itL(OXs,[_|Xs],Length,L) :-   /* OXs refers to Original List */
+itL(OXs,[_|Xs],Length,L) :- 
     NewLength is Length + 1,
     itL(OXs,Xs,NewLength,L).
 
