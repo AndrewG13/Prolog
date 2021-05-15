@@ -26,6 +26,12 @@ countSub(Sub,[F|Args],N) :-
 Sub \= F,
 countSub(Sub,Args,N).
 
+
+
+occurrences(Sub,Term,N) :-
+subuniv(Sub,Term,N).
+
+
 */
 
 
@@ -34,9 +40,8 @@ countSub(Sub,Args,N).
 /* I noticed that when running subterm(), tabbing would show more       */
 /* results past the first encounter. I was having trouble keeping track.*/
 /* Prolog provides a resource to that counts the number of successful   */          /* counts the number of successful goals of a recursive predicate!      */
-
 occurrences(Sub,Term,N) :-
-subuniv(Sub,Term,N).
+aggregate_all(count, subterm(Sub,Term), N).
 
 
 
