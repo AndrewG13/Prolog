@@ -39,7 +39,9 @@ subuniv(Sub,Term,N).
 /*                                                                      */
 /* I noticed that when running subterm(), tabbing would show more       */
 /* results past the first encounter. I was having trouble keeping track.*/
-/* Prolog provides a resource to that counts the number of successful   */          /* counts the number of successful goals of a recursive predicate!      */
+/* Prolog provides a resource to that counts the number of successful   */          
+/* counts the number of successful goals of a recursive predicate!      */
+% JA: I would have preferred that you continued trying developing the program.
 occurrences(Sub,Term,N) :-
 aggregate_all(count, subterm(Sub,Term), N).
 
